@@ -18,24 +18,21 @@ class char:
     def chooseSpec(self,sp):
         self.spec = sp
     def chooseLevel(self,l):
-        self.level = 1
+        self.level = l
     def chooseStats(self):
         emptStat ={"strength":0,"health":0,"defence":0,"magic":0,"intellegence":0,"speed":0}
         maxStat = 10*self.level
         while maxStat > 0:
-            print("{}{}{}".format(emptStat["strength"],emptStat["health"],emptStat["defence"]))
-            ras = input("Which stat do you wish to increase?\nStrength? Health?\n You have {} points left")
+            print(emptStat)
+            ras = input("Which stat do you wish to increase?\n You have {} points left".format(maxStat))
             ras = ras.lower()
-            if ras == "strength" or ras == "health" or ras == "defence" or ras == "magic"or ras =="intellegence"or ras =="speed":
-                nu = input("Incease stat by how much?")
-                if nu.isdigit() == False:
-                    while nu.isdigit() == False:
-                       nu = input("Not a number please enter again")
-                    if nu > maxStat:
-                        while nu > maxStat and nu.isdigit == False:
-                            nu = input("You don't have enoght points left for that, try entring another number")
-                    emptStat[ras]+=nu
-                    maxStat = maxStat - nu
+            nu = int(input("By how much"))
+            if nu > maxStat:
+                while nu > maxStat:
+                        nu = int(input("You don't have enoght points left for that, try entring another number"))
+            emptStat[ras]+=nu
+            maxStat = maxStat - nu
+        self.stats = emptStat
 
     def __str__(self):
         return "{},{},{},".format(self.name,self.spec,self.clas)
@@ -46,6 +43,8 @@ def makeChar():
     cla = input("Choose a class out of these options\nWarrior Cleric Mage Chef Theif Engineer Tamer Ranger or Custom")
     if cla == "custom":
         newchar.chooseClass(cla)
+    ba = input("Where are you from?")
+    newchar.chooseBackground(ba)
     lev = int(input("What level do you want your character to be?"))
     if lev > 100 or lev<0:
         while lev > 100 or lev<0:
