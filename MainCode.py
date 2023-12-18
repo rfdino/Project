@@ -59,13 +59,21 @@ class inventory:
         else:
             self.space[sp]= "empty"
             return "Item has be discarded"
-
+    def __str__(self):
+        return "{},{}".format(self.name,self.space)
+    def load(self,n,sp):
+        self.name =n
+        self.space = sp
+    def getName(self):
+        return self.name
 
 def makeChar():
     na = input("Choose a name\n")
     newchar = char(na)
     cla = input("Choose a class out of these options\nWarrior Cleric Mage Chef Theif Engineer Tamer Ranger or Custom\n")
     newchar.chooseClass(cla)
+    sp = input("What species are you?")
+    newchar.chooseSpec(sp)
     ba = input("Where are you from?\n")
     newchar.chooseBackground(ba)
     lev = int(input("What level do you want your character to be?"))
@@ -74,18 +82,30 @@ def makeChar():
             lev = int(input("Please enter a level between 1 and 100"))
     newchar.chooseLevel(lev)
     newchar.chooseStats()
+    tempna = newchar.getName()
+    tempna += " inv"
+    iven = inventory(tempna)
     fi = open(newchar.getName(),"x")
     fi.write(newchar.__str__())
     fi.close()
+    iw= open(iven.getName(),"x")
+    iw.write(iven.__str__())
+    iw.close()
     print(newchar.__str__())
 def viewChar():
     na = input("Enter the characters name")
-    open(na,"r")
+    po = open(na,"r")
+    so = po.read()
+    out =so.strip().split("'")
+    print(out)
+    po.close()
+
 def compare():
     com1 = input("How do want to choose")
     com2 = input("Who do you want to compare to")
 def item():
-    eo = input("")
+    per = input("Who's inventory do you want to check?")
+
 
 
 def main():
