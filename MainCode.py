@@ -41,7 +41,7 @@ class char:
 class inventory:
     def __init__(self,n):
         self.name = n
-        self.space = {"slot1":"empty","slot2":"empty","slot3":"empty","slot4":"empty","slot5":"empty","slot6":"empty","slot7":"empty","slot8":"empty","slot9":"empty","slot10":"empty","slot11":"empty","slot12":"empty","slot13":"empty"}
+        self.space = {"1":"empty","2":"empty","3":"empty","4":"empty","5":"empty","6":"empty","7":"empty","8":"empty","9":"empty","10":"empty","11":"empty","12":"empty","13":"empty"}
     def lookup(self,se):
         temp = self.space
         for iv in temp.keys():
@@ -105,6 +105,16 @@ def compare():
     com2 = input("Who do you want to compare to")
 def item():
     per = input("Who's inventory do you want to check?")
+    per = per+" inv"
+    er = open(per,"r")
+    po = er.read()
+    lo = po
+    ans = ""
+    while ans != "quit":
+        ans = input("what do you want to do\nAdd item?  discard item?")
+        ans = ans.lower()
+        if ans == "add item":
+            pass
 
 
 
