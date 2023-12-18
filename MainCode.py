@@ -96,7 +96,7 @@ def viewChar():
     na = input("Enter the characters name")
     po = open(na,"r")
     so = po.read()
-    out =so.strip().split("'")
+    out =so.strip().split(",")
     print(out)
     po.close()
 
@@ -108,13 +108,18 @@ def item():
     per = per+" inv"
     er = open(per,"r")
     po = er.read()
-    lo = po
+    lo = po.strip().split(",")
+    op = inventory(lo[0])
+    op.load(lo[0],lo[1])
     ans = ""
     while ans != "quit":
-        ans = input("what do you want to do\nAdd item?  discard item?")
+        print(op.__str__())
+        ans = input("what do you want to do\nAdd item?  discard item?  Search?")
         ans = ans.lower()
         if ans == "add item":
-            pass
+            th = input("What do you wnat to add")
+            sp = input("In which spot?(Enter inventory slot number)")
+            op.addItem(sp,th)
 
 
 
