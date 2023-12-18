@@ -118,7 +118,7 @@ def item():
         ans = ans.lower()
         if ans == "add item":
             th = input("What do you wnat to add")
-            sp = input("In which spot?(Enter inventory slot number)")
+            sp = int(input("In which spot?(Enter inventory slot number)"))
             op.addItem(sp,th)
 
 
