@@ -35,14 +35,35 @@ class char:
         self.stats = emptStat
 
     def __str__(self):
-        return "{},{},{},".format(self.name,self.spec,self.clas)
+        return "{},{},{},{},{},{}".format(self.name,self.back,self.spec,self.clas,self.level,self.stats)
+class inventory:
+    def __init__(self,n):
+        self.name = n
+        self.space = {"slot1":"empty","slot2":"empty","slot3":"empty","slot4":"empty","slot5":"empty","slot6":"empty","slot7":"empty","slot8":"empty","slot9":"empty","slot10":"empty","slot11":"empty","slot12":"empty","slot13":"empty"}
+    def lookup(self,se):
+        temp = self.space
+        for iv in temp.keys():
+            if temp[iv] == se:
+                return "{} was found in ".format(se)
+        return "Couldn't find it"
+    def addItem(self,so,it):
+        if self.space[so] == "empty":
+            self.space[so] == it
+        else:
+            return "Spot has an item already"
+    def discard(self,sp):
+        if self.space[sp] == "empty":
+            return "Their is nothing to discard"
+        else:
+            self.space[sp]="empty"
+            return "Item has be discarded"
+
 
 def makeChar():
     na = input("Choose a name")
     newchar = char(na)
     cla = input("Choose a class out of these options\nWarrior Cleric Mage Chef Theif Engineer Tamer Ranger or Custom")
-    if cla == "custom":
-        newchar.chooseClass(cla)
+    newchar.chooseClass(cla)
     ba = input("Where are you from?")
     newchar.chooseBackground(ba)
     lev = int(input("What level do you want your character to be?"))
@@ -51,6 +72,7 @@ def makeChar():
             lev = int(input("Please enter a level between 1 and 100"))
     newchar.chooseLevel(lev)
     newchar.chooseStats()
+    print(newchar.__str__())
 def viewChar():
     na = input("Enter the characters name")
     open(na,"r")
