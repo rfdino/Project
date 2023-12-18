@@ -15,6 +15,8 @@ class char:
         return self.clas
     def chooseClass(self,an):
         self.clas = an
+    def getName(self):
+        return self.name
     def chooseSpec(self,sp):
         self.spec = sp
     def chooseLevel(self,l):
@@ -55,16 +57,16 @@ class inventory:
         if self.space[sp] == "empty":
             return "Their is nothing to discard"
         else:
-            self.space[sp]="empty"
+            self.space[sp]= "empty"
             return "Item has be discarded"
 
 
 def makeChar():
-    na = input("Choose a name")
+    na = input("Choose a name\n")
     newchar = char(na)
-    cla = input("Choose a class out of these options\nWarrior Cleric Mage Chef Theif Engineer Tamer Ranger or Custom")
+    cla = input("Choose a class out of these options\nWarrior Cleric Mage Chef Theif Engineer Tamer Ranger or Custom\n")
     newchar.chooseClass(cla)
-    ba = input("Where are you from?")
+    ba = input("Where are you from?\n")
     newchar.chooseBackground(ba)
     lev = int(input("What level do you want your character to be?"))
     if lev > 100 or lev<0:
@@ -72,6 +74,9 @@ def makeChar():
             lev = int(input("Please enter a level between 1 and 100"))
     newchar.chooseLevel(lev)
     newchar.chooseStats()
+    fi = open(newchar.getName(),"x")
+    fi.write(newchar.__str__())
+    fi.close()
     print(newchar.__str__())
 def viewChar():
     na = input("Enter the characters name")
@@ -84,7 +89,7 @@ def item():
 
 
 def main():
-    ans = input("What would you like to do?\nMake character?  View charcter?  Compare stats?  Equip items? Quit")
+    ans = input("What would you like to do?\nMake character?  View charcter?  Compare stats?  Equip items? Quit\n")
     if ans == "make character":
         makeChar()
     elif ans == "view character":
