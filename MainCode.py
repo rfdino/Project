@@ -139,17 +139,19 @@ def item():
             exit()
 
 def main():
-    ans = input("What would you like to do?\nMake character?  View charcter?  Compare stats?  Equip items? Quit\n")
-    if ans == "make character":
-        makeChar()
-    elif ans == "view character":
-        viewChar()
-    elif ans == "compare stats":
-        compare()
-    elif ans == "equip items":
-        item()
-    elif ans == "quit":
-        exit()
+    ans = ""
+    while ans != "quit":
+        ans = input("What would you like to do?\nMake character?  View charcter?  Compare stats?  Equip items? Quit\n")
+        if ans == "make character":
+            makeChar()
+        elif ans == "view character":
+            viewChar()
+        elif ans == "compare stats":
+            compare()
+        elif ans == "equip items":
+            item()
+        elif ans == "quit":
+            exit()
 
 if __name__ == '__main__':
     main()
