@@ -110,7 +110,82 @@ def compare():
     jo1 =ko1.strip().split(",")
     st2 = open(com2,"r")
     ko2 = st2.read()
-    jo2 =ko2.strip().split(",")
+    jo2 = ko2.strip().split(",")
+    sta1 = jo1[5]
+    strmp = sta1.strip().split(":")
+    cmp1 = strmp[1]
+    sta2 = jo2[5]
+    strmp2 = sta2.strip().split(":")
+    cmp2 = strmp2[1]
+    if cmp1 > cmp2:
+        print(com1+"is stronger")
+    elif cmp1 < cmp2:
+        print(com2 +"is stronger")
+    else:
+        print("Same strength")
+    he1 = jo1[6]
+    sd = he1.strip().split(":")
+    tr = sd[1]
+    he2 = jo2[6]
+    sd2 = he2.strip().split(":")
+    tr2 = sd2[1]
+    tr = int(tr)
+    tr2 = int(tr2)
+    if tr > tr2:
+        print(com1+"has more health")
+    elif tr < tr2:
+        print(com2 +"has more health")
+    else:
+        print("Same health")
+    def1 = jo1[7]
+    ju = def1.strip().split(":")
+    de = ju[1]
+    def2 = jo2[7]
+    ju2 = def2.strip().split(":")
+    de2 = ju2[1]
+    de = int(de)
+    de2 = int(de2)
+    if de > de2:
+        print(com1+"has more defence")
+    elif de < de2:
+        print(com2+"has more defence")
+    else:
+        print("Same defence")
+    mr = jo1[8]
+    he = mr.strip().split(":")
+    ma = he[1]
+    mr2 = jo2[8]
+    he2 = mr2.strip().split(":")
+    ma2 = he2[1]
+    if ma > ma2:
+        print(com1+"is more magical")
+    elif ma < ma2:
+        print(com2+"is more magical")
+    else:
+        print("Same magical abilities")
+    ier = jo1[9]
+    ite = ier.strip().split(":")
+    inel = ite[1]
+    ier2 = jo2[9]
+    ite2 = ier2.strip().split(":")
+    inel2 = ite2[1]
+    if inel > inel2:
+        print(com1+"is more intellegent")
+    elif inel < inel2:
+        print(com2+"is more intellegent")
+    sr = jo1[10]
+    ro = sr.strip().split(":")
+    spe = ro[1]
+    sr2 = jo2[10]
+    ro2 = sr2.strip().split(":")
+    spe2 = ro2[1]
+    if spe > spe2:
+        print(com1+"is faster")
+    elif spe < spe2:
+        print(com2+"is faster")
+    else:
+        print("They're the same speed")
+
 
 def item():
     per = input("Who's inventory do you want to check?")
