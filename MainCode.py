@@ -45,39 +45,39 @@ class inventory:
     def lookup(self,se):
         temp = self.space
         va = 0
-        for iv in temp:
-            if temp[va] == se:
+        for iv in temp.keys():
+            if temp[iv] == se:
                 return "{} was found in slot {}".format(se,va)
             va += 1
         return "Couldn't find it"
     def addItem(self,so,it):
-        if self.space[so] == "empty":
+        if self.space[so] == "'empty'":
             self.space[so] == it
         else:
             return "Spot has an item already"
     def discard(self,sp):
-        if self.space[sp] == "empty":
+        if self.space[sp] == "'empty'":
             return "Their is nothing to discard"
         else:
-            self.space[sp]= "empty"
+            self.space[sp]= "'empty'"
             return "Item has be discarded"
     def __str__(self):
         return "{},{}".format(self.name,self.space)
     def load(self,n,sp):
         self.name =n
-        self.space[0] = sp[0]
-        self.space[1] = sp[1]
-        self.space[2] = sp[2]
-        self.space[3] = sp[3]
-        self.space[4] = sp[4]
-        self.space[5] = sp[5]
-        self.space[6] = sp[6]
-        self.space[7] = sp[7]
-        self.space[8] = sp[8]
-        self.space[9] = sp[9]
-        self.space[10] = sp[10]
-        self.space[11] = sp[11]
-        self.space[12] = sp[12]
+        self.space["0"] = sp[0]
+        self.space["1"] = sp[1]
+        self.space["2"] = sp[2]
+        self.space["3"] = sp[3]
+        self.space["4"] = sp[4]
+        self.space["5"] = sp[5]
+        self.space["6"] = sp[6]
+        self.space["7"] = sp[7]
+        self.space["8"] = sp[8]
+        self.space["9"] = sp[9]
+        self.space["10"] = sp[10]
+        self.space["11"] = sp[11]
+        self.space["12"] = sp[12]
         return self.name
 
 def makeChar():
@@ -218,7 +218,11 @@ def item():
     co = 0
     for iv in fulInv:
         re = iv.split(":")
-        fulInv[co] = re[1]
+        op = re[1]
+        op.strip("\"")
+        fulInv[co] = op
+        print(op)
+        co +=1
     op = inventory(lo[0])
     op.load(lo[0],fulInv)
     ans = ""
@@ -228,10 +232,10 @@ def item():
         ans = ans.lower()
         if ans == "add item":
             th = input("What do you want to add\n")
-            sp = int(input("In which spot?(Enter inventory slot number)\n"))
+            sp = input("In which spot?(Enter inventory slot number)\n")
             print(op.addItem(sp,th))
         if ans == "discard item":
-            di = int(input("Which inventory spot do cleared"))
+            di = input("Which inventory spot do cleared")
             print(op.discard(di))
         if ans == "search":
             se = input("Which item do you want to search for?\n")
