@@ -44,9 +44,11 @@ class inventory:
         self.space = {"1":"empty","2":"empty","3":"empty","4":"empty","5":"empty","6":"empty","7":"empty","8":"empty","9":"empty","10":"empty","11":"empty","12":"empty","13":"empty"}
     def lookup(self,se):
         temp = self.space
-        for iv in temp.keys():
-            if temp[iv] == se:
-                return "{} was found in ".format(se)
+        va = 0
+        for iv in temp:
+            if temp[va] == se:
+                return "{} was found in slot {}".format(se,va)
+            va += 1
         return "Couldn't find it"
     def addItem(self,so,it):
         if self.space[so] == "empty":
@@ -103,6 +105,13 @@ def viewChar():
 def compare():
     com1 = input("How do want to choose")
     com2 = input("Who do you want to compare to")
+    st1 = open(com1,"r")
+    ko1 = st1.read()
+    jo1 =ko1.strip().split(",")
+    st2 = open(com2,"r")
+    ko2 = st2.read()
+    jo2 =ko2.strip().split(",")
+
 def item():
     per = input("Who's inventory do you want to check?")
     per = per+" inv"
@@ -114,14 +123,20 @@ def item():
     ans = ""
     while ans != "quit":
         print(op.__str__())
-        ans = input("what do you want to do\nAdd item?  discard item?  Search?")
+        ans = input("what do you want to do\nAdd item?  discard item?  Search?  Quit?\n")
         ans = ans.lower()
         if ans == "add item":
-            th = input("What do you wnat to add")
-            sp = int(input("In which spot?(Enter inventory slot number)"))
-            op.addItem(sp,th)
-
-
+            th = input("What do you want to add\n")
+            sp = int(input("In which spot?(Enter inventory slot number)\n"))
+            print(op.addItem(sp,th))
+        if ans == "discard item":
+            di = int(input("Which inventory spot do cleared"))
+            print(op.discard(di))
+        if ans == "search":
+            se = input("Which item do you want to search for?\n")
+            print(op.lookup(se))
+        if ans == "quit":
+            exit()
 
 def main():
     ans = input("What would you like to do?\nMake character?  View charcter?  Compare stats?  Equip items? Quit\n")
@@ -131,7 +146,7 @@ def main():
         viewChar()
     elif ans == "compare stats":
         compare()
-    elif ans == "equip":
+    elif ans == "equip items":
         item()
     elif ans == "quit":
         exit()
