@@ -41,7 +41,7 @@ class char:
 class inventory:
     def __init__(self,n):
         self.name = n
-        self.space = {"1":"empty","2":"empty","3":"empty","4":"empty","5":"empty","6":"empty","7":"empty","8":"empty","9":"empty","10":"empty","11":"empty","12":"empty","13":"empty"}
+        self.space = {"0":"empty","1":"empty","2":"empty","3":"empty","4":"empty","5":"empty","6":"empty","7":"empty","8":"empty","9":"empty","10":"empty","11":"empty","12":"empty"}
     def lookup(self,se):
         temp = self.space
         va = 0
@@ -65,8 +65,19 @@ class inventory:
         return "{},{}".format(self.name,self.space)
     def load(self,n,sp):
         self.name =n
-        self.space = sp
-    def getName(self):
+        self.space[0] = sp[0]
+        self.space[1] = sp[1]
+        self.space[2] = sp[2]
+        self.space[3] = sp[3]
+        self.space[4] = sp[4]
+        self.space[5] = sp[5]
+        self.space[6] = sp[6]
+        self.space[7] = sp[7]
+        self.space[8] = sp[8]
+        self.space[9] = sp[9]
+        self.space[10] = sp[10]
+        self.space[11] = sp[11]
+        self.space[12] = sp[12]
         return self.name
 
 def makeChar():
@@ -103,7 +114,7 @@ def viewChar():
     po.close()
 
 def compare():
-    com1 = input("How do want to choose")
+    com1 = input("Who do want to choose")
     com2 = input("Who do you want to compare to")
     st1 = open(com1,"r")
     ko1 = st1.read()
@@ -117,6 +128,8 @@ def compare():
     sta2 = jo2[5]
     strmp2 = sta2.strip().split(":")
     cmp2 = strmp2[1]
+    cmp1 = int(cmp1)
+    cmp2 = int(cmp2)
     if cmp1 > cmp2:
         print(com1+"is stronger")
     elif cmp1 < cmp2:
@@ -132,9 +145,9 @@ def compare():
     tr = int(tr)
     tr2 = int(tr2)
     if tr > tr2:
-        print(com1+"has more health")
+        print(com1+" has more health")
     elif tr < tr2:
-        print(com2 +"has more health")
+        print(com2 +" has more health")
     else:
         print("Same health")
     def1 = jo1[7]
@@ -146,9 +159,9 @@ def compare():
     de = int(de)
     de2 = int(de2)
     if de > de2:
-        print(com1+"has more defence")
+        print(com1+" has more defence")
     elif de < de2:
-        print(com2+"has more defence")
+        print(com2+" has more defence")
     else:
         print("Same defence")
     mr = jo1[8]
@@ -157,10 +170,12 @@ def compare():
     mr2 = jo2[8]
     he2 = mr2.strip().split(":")
     ma2 = he2[1]
+    ma = int(ma)
+    ma2 = int(ma2)
     if ma > ma2:
-        print(com1+"is more magical")
+        print(com1+" is more magical")
     elif ma < ma2:
-        print(com2+"is more magical")
+        print(com2+" is more magical")
     else:
         print("Same magical abilities")
     ier = jo1[9]
@@ -169,20 +184,26 @@ def compare():
     ier2 = jo2[9]
     ite2 = ier2.strip().split(":")
     inel2 = ite2[1]
+    inel = int(inel)
+    inel2 = int(inel2)
     if inel > inel2:
-        print(com1+"is more intellegent")
+        print(com1+" is more intellegent")
     elif inel < inel2:
-        print(com2+"is more intellegent")
+        print(com2+" is more intellegent")
     sr = jo1[10]
     ro = sr.strip().split(":")
     spe = ro[1]
     sr2 = jo2[10]
     ro2 = sr2.strip().split(":")
     spe2 = ro2[1]
+    spe = spe.strip("}")
+    spe2 =spe2.strip("}")
+    spe = int(spe)
+    spe2 =int(spe2)
     if spe > spe2:
-        print(com1+"is faster")
+        print(com1+" is faster")
     elif spe < spe2:
-        print(com2+"is faster")
+        print(com2+" is faster")
     else:
         print("They're the same speed")
 
@@ -193,12 +214,17 @@ def item():
     er = open(per,"r")
     po = er.read()
     lo = po.strip().split(",")
+    fulInv = [lo[1].strip("{"),lo[2],lo[3],lo[4],lo[5],lo[6],lo[7],lo[8],lo[9],lo[10],lo[11],lo[12],lo[13].strip("}")]
+    co = 0
+    for iv in fulInv:
+        re = iv.split(":")
+        fulInv[co] = re[1]
     op = inventory(lo[0])
-    op.load(lo[0],lo[1])
+    op.load(lo[0],fulInv)
     ans = ""
     while ans != "quit":
         print(op.__str__())
-        ans = input("what do you want to do\nAdd item?  discard item?  Search?  Quit?\n")
+        ans = input("What do you want to do?\nAdd item?  discard item?  Search?  Quit?\n")
         ans = ans.lower()
         if ans == "add item":
             th = input("What do you want to add\n")
